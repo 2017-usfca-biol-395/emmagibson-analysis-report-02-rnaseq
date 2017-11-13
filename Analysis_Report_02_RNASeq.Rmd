@@ -88,9 +88,6 @@ top_15 %>%
              fill = gender)) +
     geom_col(position = "dodge")
 ```
-```{r gene-by-stage}
-# here I want to look at expression in top genes in 
-```
 
 
 ```{r make-boxplot-of-highly-expressed-genes, echo = FALSE}
@@ -124,6 +121,31 @@ final_table %>%
 ```
 
 **Figure x**: Here we show another example figure caption.
+
+
+```{r gender-and-smoking}
+# 
+gender_and_smoking_status <- final_table %>%
+  group_by(smoking_status, cancer_stage, gender, sample_name_s) %>%
+  count() %>%
+  arrange(desc(n))
+
+
+g_and_ss_tally
+
+with(gender_and_smoking_status, table(gender, smoking_status, cancer_stage)) %>%
+  as.data.frame() %>%
+  ggplot(aes(x = smoking_status,
+             y = Freq,
+             fill = gender)) +
+  facet_wrap(~cancer_stage) +
+  geom_col(position = "dodge")
+
+     names(g_and_ss_tally) <- c("gender", "smoking_status", "cancer_stage", "n")
+
+ka
+```
+
 
 # Discussion
 
