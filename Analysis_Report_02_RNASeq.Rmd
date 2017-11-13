@@ -1,7 +1,7 @@
 ---
 title: "Analysis Report 2: Your Title Here"
-author: "Don Francisco"
-date: "November 10, 2017"
+author: "Emma Gibson"
+date: "November 21, 2017"
 output: github_document
 bibliography: references.bib
 csl: bioinformatics.csl
@@ -88,8 +88,10 @@ top_15 %>%
              fill = gender)) +
     geom_col(position = "dodge")
 ```
+```{r gene-by-stage}
+# here I want to look at expression in top genes in 
+```
 
-**Figure 1**: Here we show an example figure caption.
 
 ```{r make-boxplot-of-highly-expressed-genes, echo = FALSE}
 # here we just want to pull out the unique gene names and turn
@@ -111,17 +113,17 @@ final_table %>%
              y = counts_lengthscaledtpm,
              fill = gender)) +
     geom_boxplot() +
-    facet_wrap(~cancer_stage) +
+    facet_wrap(~smoking_status) +
     xlab("Gene Name") +
     ylab("Scaled read counts per gene") +
-    ggtitle("Read counts per gene by gender and cancer stage") +
+    ggtitle("Read counts per gene by gender and smoking status") +
     theme_bw() + # simplifies theme
     theme(axis.text.x = # rotates x axis labels vertically
             element_text(angle = 90,
                          hjust = 1))
 ```
 
-**Figure 2**: Here we show another example figure caption.
+**Figure x**: Here we show another example figure caption.
 
 # Discussion
 
