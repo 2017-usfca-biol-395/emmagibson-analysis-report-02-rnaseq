@@ -86,7 +86,10 @@ top_15 %>%
   ggplot(aes(x = genename,
              y = mean_count,
              fill = gender)) +
-    geom_col(position = "dodge")
+  xlab("Gene name") +
+  ylab("Mean read counts per gene") +
+  theme_bw() +
+  geom_col(position = "dodge")
 ```
 
 This figure shows the fifteen most common genes in male and female patients.
@@ -112,7 +115,7 @@ final_table %>%
              fill = gender)) +
     geom_boxplot() +
     facet_wrap(~smoking_status) +
-    xlab("Gene Name") +
+    xlab("Gene name") +
     ylab("Scaled read counts per gene") +
     ggtitle("Read counts per gene by gender and smoking status") +
     theme_bw() + # simplifies theme
@@ -141,6 +144,9 @@ with(gender_and_smoking_status, table(gender, smoking_status, cancer_stage)) %>%
   facet_wrap(~cancer_stage) +
   geom_col(position = "dodge") +
   ggtitle("Smoking status of patients with each cancer stage") +
+  xlab("Smoking status") +
+  ylab("Number of patients") +
+  theme_bw() +
   theme(axis.text.x =
             element_text(angle = 90,
                          hjust = 1))
@@ -174,10 +180,11 @@ final_table %>%
              fill = gender)) +
     geom_boxplot() +
     facet_wrap(~smoking_status) +
-    xlab("Gene Name") +
+    xlab("Gene name") +
     ylab("Scaled read counts per gene") +
     ggtitle("Read counts per gene of genes common to female smokers") +
-    theme(axis.text.x =
+  theme_bw() +
+  theme(axis.text.x =
             element_text(angle = 90,
                          hjust = 1))
 ```
@@ -198,6 +205,9 @@ top_f_in_all_status %>%
   facet_wrap(~smoking_status) +
   geom_col(position = "dodge") +
   ggtitle("Expression of most common genes in female patients in all patients by smoking status") +
+  xlab("Gene name") +
+  ylab("Mean read counts per gene") +
+  theme_bw() +
   theme(axis.text.x =
             element_text(angle = 90,
                          hjust = 1))
@@ -214,6 +224,9 @@ top_f_in_all_stage %>%
   facet_wrap(~cancer_stage) +
   geom_col(position = "dodge") +
   ggtitle("Expression of most common genes in female patients in all patients by cancer stage") +
+  xlab("Gene name") +
+  ylab("Mean read counts per gene") +
+  theme_bw() +
   theme(axis.text.x =
             element_text(angle = 90,
                          hjust = 1))
@@ -224,7 +237,7 @@ top_f_in_all_stage %>%
 
 -SFTPB is more common in never-smoking females, and in males otherwise
  - this comes mostly from 1B stage patients
-  - this stage is also common in previously-smoking males, who show much higher SFTB1
+  - this stage is also common in previously-smoking males, who show much higher SFTPB
   - this indicates it's probably due to cancer stage rather than smoking status
 
 -it lookslike females have different smoking status/stage
