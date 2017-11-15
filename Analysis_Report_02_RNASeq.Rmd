@@ -185,18 +185,35 @@ final_table %>%
 
 
 ```{r smoking-in-female-genes}
-top_f_in_all <- final_table %>%
+
+top_f_in_all_status <- final_table %>%
   filter(genename %in% top_genes_f) %>%
   group_by(gender, genename, smoking_status) %>%
   summarize(mean_count = mean(counts_lengthscaledtpm))
 
-top_f_in_all %>%
+top_f_in_all_status %>%
   ggplot(aes(x = genename,
              y = mean_count,
              fill = gender)) +
   facet_wrap(~smoking_status) +
   geom_col(position = "dodge") +
-  ggtitle("Expression of most common genes in female patients in all patients") +
+  ggtitle("Expression of most common genes in female patients in all patients by smoking status") +
+  theme(axis.text.x =
+            element_text(angle = 90,
+                         hjust = 1))
+
+top_f_in_all_stage <- final_table %>%
+  filter(genename %in% top_genes_f) %>%
+  group_by(gender, genename, cancer_stage) %>%
+  summarize(mean_count = mean(counts_lengthscaledtpm))
+
+top_f_in_all_stage %>%
+  ggplot(aes(x = genename,
+             y = mean_count,
+             fill = gender)) +
+  facet_wrap(~cancer_stage) +
+  geom_col(position = "dodge") +
+  ggtitle("Expression of most common genes in female patients in all patients by cancer stage") +
   theme(axis.text.x =
             element_text(angle = 90,
                          hjust = 1))
@@ -204,6 +221,11 @@ top_f_in_all %>%
 
 
 # Discussion
+
+-SFTPB is more common in never-smoking females, and in males otherwise
+ - this comes mostly from 1B stage patients
+  - this stage is also common in previously-smoking males, who show much higher SFTB1
+  - this indicates it's probably due to cancer stage rather than smoking status
 
 -it lookslike females have different smoking status/stage
 -see if there are genes more common to females than males
