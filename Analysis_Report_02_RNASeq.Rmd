@@ -89,6 +89,7 @@ top_15 %>%
     geom_col(position = "dodge")
 ```
 
+This figure shows the fifteen most common genes in male and female patients.
 
 ```{r make-boxplot-of-highly-expressed-genes, echo = FALSE}
 # here we just want to pull out the unique gene names and turn
@@ -130,8 +131,7 @@ gender_and_smoking_status <- final_table %>%
   count() %>%
   arrange(desc(n))
 
-
-g_and_ss_tally
+names(g_and_ss_tally) <- c("gender", "smoking_status", "cancer_stage", "n")
 
 with(gender_and_smoking_status, table(gender, smoking_status, cancer_stage)) %>%
   as.data.frame() %>%
@@ -139,15 +139,90 @@ with(gender_and_smoking_status, table(gender, smoking_status, cancer_stage)) %>%
              y = Freq,
              fill = gender)) +
   facet_wrap(~cancer_stage) +
-  geom_col(position = "dodge")
+  geom_col(position = "dodge") +
+  ggtitle("Smoking status of patients with each cancer stage") +
+  theme(axis.text.x =
+            element_text(angle = 90,
+                         hjust = 1))
+```
 
-     names(g_and_ss_tally) <- c("gender", "smoking_status", "cancer_stage", "n")
+```{r female-gene-table}
 
-ka
+top_9_f <- final_table %>%
+  filter(gender == "female") %>%
+  group_by(genename) %>%
+  summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
+  arrange(desc(mean_count)) %>%
+  head(n = 9)
+
+kable(top_15_f)
 ```
 
 
+```{r female-gene-graph}
+
+top_genes_f <- top_9_f %>%
+  ungroup() %>%
+  select(genename) %>%
+  unique() %>%
+  pull()
+
+final_table %>%
+  filter(genename %in% top_genes_f) %>%
+  ggplot(aes(x = genename,
+             y = counts_lengthscaledtpm,
+             fill = gender)) +
+    geom_boxplot() +
+    facet_wrap(~smoking_status) +
+    xlab("Gene Name") +
+    ylab("Scaled read counts per gene") +
+    ggtitle("Read counts per gene of genes common to female smokers") +
+    theme(axis.text.x =
+            element_text(angle = 90,
+                         hjust = 1))
+```
+
+
+
+```{r smoking-in-female-genes}
+top_f_in_all <- final_table %>%
+  filter(genename %in% top_genes_f) %>%
+  group_by(gender, genename, cancer_stage) %>%
+  summarize(mean_count = mean(counts_lengthscaledtpm))
+
+top_f_in_all %>%
+  ggplot(aes(x = genename,
+             y = mean_count,
+             fill = gender)) +
+  facet_wrap(~cancer_stage) +
+  geom_col(position = "dodge") +
+  ggtitle("Expression of most common genes in female patients in all patients") +
+  theme(axis.text.x =
+            element_text(angle = 90,
+                         hjust = 1))
+```
+
+```{r genes-in-m-f-boxplot}
+
+m_f_differences <- final_table %>%
+  group_by(gender, genename) %>%
+  summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
+  spread(key = gender,
+         value = mean_count) %>%
+  mutate(gender_diff = abs((female - male)/(female + male))) %>%
+  filter(!is.nan(gender_diff)) %>%
+  arrange(desc(female + male)) %>%
+  filter(gender_diff == 1)
+
+
+```
+
 # Discussion
+
+-it lookslike females have different smoking status/stage
+-see if there are genes more common to females than males
+-compare to males of same cancer stage
+-are these genes due to female smoking status? Or are they differently expressed in males
 
 Add around 1-2 pages interpreting your results and considering future directions one might take in analyzing these data.
 
