@@ -187,14 +187,14 @@ final_table %>%
 ```{r smoking-in-female-genes}
 top_f_in_all <- final_table %>%
   filter(genename %in% top_genes_f) %>%
-  group_by(gender, genename, cancer_stage) %>%
+  group_by(gender, genename, smoking_status) %>%
   summarize(mean_count = mean(counts_lengthscaledtpm))
 
 top_f_in_all %>%
   ggplot(aes(x = genename,
              y = mean_count,
              fill = gender)) +
-  facet_wrap(~cancer_stage) +
+  facet_wrap(~smoking_status) +
   geom_col(position = "dodge") +
   ggtitle("Expression of most common genes in female patients in all patients") +
   theme(axis.text.x =
@@ -202,20 +202,6 @@ top_f_in_all %>%
                          hjust = 1))
 ```
 
-```{r genes-in-m-f-boxplot}
-
-m_f_differences <- final_table %>%
-  group_by(gender, genename) %>%
-  summarize(mean_count = mean(counts_lengthscaledtpm)) %>%
-  spread(key = gender,
-         value = mean_count) %>%
-  mutate(gender_diff = abs((female - male)/(female + male))) %>%
-  filter(!is.nan(gender_diff)) %>%
-  arrange(desc(female + male)) %>%
-  filter(gender_diff == 1)
-
-
-```
 
 # Discussion
 
