@@ -1,13 +1,11 @@
 ---
 title: "Analysis Report 2: Your Title Here"
 author: "Emma Gibson"
-date: "November 21, 2017"
+date: "November 20, 2017"
 output: github_document
 bibliography: references.bib
 csl: bioinformatics.csl
 ---
-
-*Overall, a single-spaced page is about 500 words. So if the guidelines say half of a page, think about writing around 250 words. You can use the wordcountaddin in RStudio to track your progress.*
 
 # Introduction
 
@@ -128,16 +126,15 @@ final_table %>%
 
 
 ```{r gender-and-smoking}
-# 
+# first, this code finds various factors for each patient
 gender_and_smoking_status <- final_table %>%
   group_by(smoking_status, cancer_stage, gender, sample_name_s) %>%
   count() %>%
   arrange(desc(n))
 
-names(g_and_ss_tally) <- c("gender", "smoking_status", "cancer_stage", "n")
-
+#next, this code interprets it as a dataframe and reads it into ggplot
 with(gender_and_smoking_status, table(gender, smoking_status, cancer_stage)) %>%
-  as.data.frame() %>%
+  as.data.frame() %>% #to make it a ggplot-friendly dataframe
   ggplot(aes(x = smoking_status,
              y = Freq,
              fill = gender)) +
@@ -153,7 +150,9 @@ with(gender_and_smoking_status, table(gender, smoking_status, cancer_stage)) %>%
 ```
 
 ```{r female-gene-table}
-
+# this code finds the top 9 genes in female patients only
+# I chose 9 instead of 15 because the original top 15 had
+# 9 genes because some were common in both genders
 top_9_f <- final_table %>%
   filter(gender == "female") %>%
   group_by(genename) %>%
@@ -161,18 +160,21 @@ top_9_f <- final_table %>%
   arrange(desc(mean_count)) %>%
   head(n = 9)
 
-kable(top_15_f)
+#next, this line puts it into a nice markdown table
+kable(top_9_f)
 ```
 
 
 ```{r female-gene-graph}
-
+# this puts the top 9 female genes into a facet-friendly format
 top_genes_f <- top_9_f %>%
   ungroup() %>%
   select(genename) %>%
   unique() %>%
   pull()
 
+# this code makes a figure similar to Figure 2, but with top female genes
+# it doesn't plot top_genes_f because I wanted to include male patients
 final_table %>%
   filter(genename %in% top_genes_f) %>%
   ggplot(aes(x = genename,
@@ -192,7 +194,7 @@ final_table %>%
 
 
 ```{r smoking-in-female-genes}
-
+# this gets the appropriate metadata to make a figure faceted by smoking status
 top_f_in_all_status <- final_table %>%
   filter(genename %in% top_genes_f) %>%
   group_by(gender, genename, smoking_status) %>%
@@ -204,7 +206,8 @@ top_f_in_all_status %>%
              fill = gender)) +
   facet_wrap(~smoking_status) +
   geom_col(position = "dodge") +
-  ggtitle("Expression of most common genes in female patients in all patients by smoking status") +
+  ggtitle("Expression of most common genes in female
+          patients in all patients by smoking status") +
   xlab("Gene name") +
   ylab("Mean read counts per gene") +
   theme_bw() +
@@ -212,6 +215,7 @@ top_f_in_all_status %>%
             element_text(angle = 90,
                          hjust = 1))
 
+# this gets the appropriate metadata to make a figure faceted by cancer stage
 top_f_in_all_stage <- final_table %>%
   filter(genename %in% top_genes_f) %>%
   group_by(gender, genename, cancer_stage) %>%
@@ -223,7 +227,8 @@ top_f_in_all_stage %>%
              fill = gender)) +
   facet_wrap(~cancer_stage) +
   geom_col(position = "dodge") +
-  ggtitle("Expression of most common genes in female patients in all patients by cancer stage") +
+  ggtitle("Expression of most common genes in female
+          patients in all patients by cancer stage") +
   xlab("Gene name") +
   ylab("Mean read counts per gene") +
   theme_bw() +
