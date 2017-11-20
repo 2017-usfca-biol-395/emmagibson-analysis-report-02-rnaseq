@@ -241,18 +241,11 @@ top_f_in_all_stage %>%
 ```
 
 **Figure 5.** Abundance of top 9 female genes by gender, faceted by A. smoking status and B. cancer stage
+
 # Discussion
 
--SFTPB is more common in never-smoking females, and in males otherwise
- - this comes mostly from 1B stage patients
-  - this stage is also common in previously-smoking males, who show much higher SFTPB
-  - this indicates it's probably due to cancer stage rather than smoking status
+Initially, I noticed that gene expression was relatively even in both genders for the most common genes, witht he exception of EEF1A1 and SFTB (Figure 1). After breaking further breaking down this data by smoking status, I found a similar correlation between gene expression between the genders, but I noticed that there seemed to be less data on female smokers (Figure 2). When I looked into this further, I found that most of the female patients had never smoked and were in early stages of cancer. (Figure 3) Given this information, I decided to investigate whether the most common genes in female patients might be different than the most common genes in all patients, and found that they were (Table 2). Most of the genes tht were most commom in female patients were the same as the most common in general patients, and they showed similar expression patterns as well (Figure 4) Lastly, I decided to examine the expression of these genes compared to smoking status and cancer stage, and found that the genes that were more common in females were also most common in nonsmokers with early cancer stages, which makes sense given the other analyses (Figure 5).
 
--it lookslike females have different smoking status/stage
--see if there are genes more common to females than males
--compare to males of same cancer stage
--are these genes due to female smoking status? Or are they differently expressed in males
-
-Add around 1-2 pages interpreting your results and considering future directions one might take in analyzing these data.
+Of the few genes that are consistently more common in female patients than males are genes like SFTBP, which seems to be especially common in cancer stage 1B (Figure 5B). Although it is quite common in both genders at this stage, SFTBP is the most common gene in females at this stage, but not in males. Although this could be due to the gene simply being expressed in early stages of cancer, the difference could potentially hint that a different type of cancer common to females at this stage. Studies have shown that the SFTBP gene is associated with adenocarcinoma, the type of lung cancer that is especially common in females. [@taguchi2011lung] Given that Li et al. showed that there are differences in gene expression among lung cancer patients who do and do not smoke, it is possible that adenocarcinomaadenocarcinoma might be more common in people who do not smoke, rather than females. [@li2015rna] However, this gene is still more common in females who have never smoked than males who have never smoked, indicating that SFTBP's abundance in female patients is more likely due to gender than smoking status.
 
 # Sources Cited
