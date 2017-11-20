@@ -1,5 +1,5 @@
 ---
-title: "Analysis Report 2: Your Title Here"
+title: "Analysis Report 2: Gender differences in lung cancer"
 author: "Emma Gibson"
 date: "November 20, 2017"
 output: github_document
@@ -15,15 +15,15 @@ Add about 1 page here. Must cite at least 5 peer reviewed articles.
 
 ## Sample origin and sequencing
 
-Add about half a page here. In this section instead of first person (I/we), use Li et al. [@li2015rna] and Seo et al. [@seo2012transcriptional], since you'll just be describing what they did, based on the methods in their paper(s). It's important to include this so the reader knows what the study design was for the data you will be presenting.
+The original data that was analyzed in this report was gathered by Seo et al. in their paper studying the transcriptional landscape of lung cancer patients. [@seo2012transcriptional] Original tissue samples were taken surgically from cancer patients, and were extracted from both healthy and cancerous tissue. cDNA libraries were sequenced using an Illumina HiSeq machine. The goal of this initial study was to identify potential point mutations and alternative splicing in the genes of cancer patients.
+
+After this initial study, Li et al. re-analyzed the sequence data looking for differences in gene expression between smoking and non-smoking cancer patients. [@li2015rna] Using various statistical analysis from R, such as Bionconductor and EdgeR, they compared overall gene transcription levels in smoking and non-smoking cancer patients. Their analysis excluded patients over age 75, and included additional data from 6 nonsmoker patients from another study.
 
 ## Computational
 
-These are the methods that were used to process the sequencing data. Should probably be at least a half of a page. At a very minimum should include citations for biomartr, trimmomatic, and sailfish. Note that these three methods references don't count towards the five references you need to cite in the introduction.
+The data from the initial study was downloaded off of NCBI, then re-proscessed and re-mapped using several programs. First, trimmomatic was used to properly clean and proscess the sequences from the initial RNAseq dataset. [@trimmomatic] BioMart was used to download the annotated reference genomes that the RNA sequences would be mapped to. [@biomartr] [@sailfsh] Finally, the cleaned RNAseq data and its associated metadata was analyzed in R using extensions such as ggplott
 
 # Results
-
-In addition to a minimum of 4-5 figures/tables (and associated captions), you should include sufficient text in this section to describe what your findings were. Remember that in the results section you just describe what you found, but you don't interpret it - that happens in the discussion.
 
 ```{r load-libraries, message = FALSE, echo = FALSE}
 # Be sure to install these packages before running this script
