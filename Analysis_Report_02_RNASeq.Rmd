@@ -9,7 +9,7 @@ csl: bioinformatics.csl
 
 # Introduction
 
-Add about 1 page here. Must cite at least 5 peer reviewed articles.
+In today's society, cancer in general and lung cancer specifically is one of the most common causes of death. There have been numerous studies on the prevalance and risk factors of lung cancer, many of which agree that smoking presents a serious increase in risk for developing lung cancer. [@peto2000smoking] However, there have been conflicting results as to how biological sex affects risk of lung cancer. Some studies indicate that there there are no significant differences in the overall lung cancer rates between men and women, althought here might be differences in the rates of certain types of lung cancer. [@bain2004lung] However, other studies indicate that women are at a higher risk of developing all types of lung cancer. [@doi:10.1093/jnci/88.3-4.183] However, both of the cited studies agree with each other and other studies that adenocarcinoma rates are higher in females. [@devesa2005international] This type of cancer is characterized by regulation of several distinct genes, including those known to be associated with lung sulfricant proteins. [@taguchi2011lung]
 
 # Methods
 
@@ -21,7 +21,7 @@ After this initial study, Li et al. re-analyzed the sequence data looking for di
 
 ## Computational
 
-The data from the initial study was downloaded off of NCBI, then re-proscessed and re-mapped using several programs. First, trimmomatic was used to properly clean and proscess the sequences from the initial RNAseq dataset. [@trimmomatic] BioMart was used to download the annotated reference genomes that the RNA sequences would be mapped to. [@biomartr] [@sailfsh] Finally, the cleaned RNAseq data and its associated metadata was analyzed in R using extensions such as ggplott
+The data from the initial study was downloaded off of NCBI, then re-proscessed and re-mapped using several programs. First, trimmomatic was used to properly clean and proscess the sequences from the initial RNAseq dataset. [@doi:10.1093/bioinformatics/btu170] BioMart was used to download the annotated reference genomes that the RNA sequences would be mapped to. [@doi:10.1093/bioinformatics/bti525] This RNAseq information mapped to these reference genomes usingsailfish. [@patro_mount_kingsford_2014] Finally, the cleaned RNAseq data and its associated metadata was analyzed in R using extensions such as ggplott
 
 # Results
 
@@ -74,7 +74,7 @@ top_15 %>%
   kable()
 ```
 
-**Table 1**: The most highly expressed genes in both genders included *SFTPB* and *EEF1A1*.
+**Table 1.** The most highly expressed genes in both genders included *SFTPB* and *EEF1A1*.
 
 ```{r make-barplot-of-highly-expressed-genes, echo = FALSE}
 # this code uses the same data as above, but use it to make a
@@ -90,7 +90,7 @@ top_15 %>%
   geom_col(position = "dodge")
 ```
 
-This figure shows the fifteen most common genes in male and female patients.
+**Figure 1.** Fifteen most common genes in male and female patients.
 
 ```{r make-boxplot-of-highly-expressed-genes, echo = FALSE}
 # here we just want to pull out the unique gene names and turn
@@ -122,7 +122,7 @@ final_table %>%
                          hjust = 1))
 ```
 
-**Figure x**: Here we show another example figure caption.
+**Figure 2.** Expression counts in top 15 genes, by gender and smoking status
 
 
 ```{r gender-and-smoking}
@@ -149,6 +149,8 @@ with(gender_and_smoking_status, table(gender, smoking_status, cancer_stage)) %>%
                          hjust = 1))
 ```
 
+**Figure 3.** Smoking statues of patients with each cancer stage by gender
+
 ```{r female-gene-table}
 # this code finds the top 9 genes in female patients only
 # I chose 9 instead of 15 because the original top 15 had
@@ -164,6 +166,7 @@ top_9_f <- final_table %>%
 kable(top_9_f)
 ```
 
+**Table 2.** Top 9 genes in female patients
 
 ```{r female-gene-graph}
 # this puts the top 9 female genes into a facet-friendly format
@@ -191,7 +194,7 @@ final_table %>%
                          hjust = 1))
 ```
 
-
+**Figure 4.** Expression counts in top 9 most common female genes, by gender and smoking status
 
 ```{r smoking-in-female-genes}
 # this gets the appropriate metadata to make a figure faceted by smoking status
@@ -206,7 +209,7 @@ top_f_in_all_status %>%
              fill = gender)) +
   facet_wrap(~smoking_status) +
   geom_col(position = "dodge") +
-  ggtitle("Expression of most common genes in female
+  ggtitle("A. Expression of most common genes for female
           patients in all patients by smoking status") +
   xlab("Gene name") +
   ylab("Mean read counts per gene") +
@@ -227,7 +230,7 @@ top_f_in_all_stage %>%
              fill = gender)) +
   facet_wrap(~cancer_stage) +
   geom_col(position = "dodge") +
-  ggtitle("Expression of most common genes in female
+  ggtitle("B. Expression of most common genes for female
           patients in all patients by cancer stage") +
   xlab("Gene name") +
   ylab("Mean read counts per gene") +
@@ -237,7 +240,7 @@ top_f_in_all_stage %>%
                          hjust = 1))
 ```
 
-
+**Figure 5.** Abundance of top 9 female genes by gender, faceted by A. smoking status and B. cancer stage
 # Discussion
 
 -SFTPB is more common in never-smoking females, and in males otherwise
