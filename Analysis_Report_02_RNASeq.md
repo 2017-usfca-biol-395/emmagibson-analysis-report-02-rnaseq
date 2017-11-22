@@ -6,7 +6,7 @@ November 20, 2017
 Introduction
 ============
 
-In today's society, cancer in general and lung cancer specifically is one of the most common causes of death. There have been numerous studies on the prevalance and risk factors of lung cancer, many of which agree that smoking presents a serious increase in risk for developing lung cancer. (<span class="citeproc-not-found" data-reference-id="peto2000smoking">**???**</span>) However, there have been conflicting results as to how biological sex affects risk of lung cancer. Some studies indicate that there there are no significant differences in the overall lung cancer rates between men and women, althought here might be differences in the rates of certain types of lung cancer. (<span class="citeproc-not-found" data-reference-id="bain2004lung">**???**</span>) However, other studies indicate that women are at a higher risk of developing all types of lung cancer. (<span class="citeproc-not-found" data-reference-id="doi:10.1093/jnci/88.3-4.183">**???**</span>) However, both of the cited studies agree with each other and other studies that adenocarcinoma rates are higher in females. (<span class="citeproc-not-found" data-reference-id="devesa2005international">**???**</span>) This type of cancer is characterized by regulation of several distinct genes, including those known to be associated with lung sulfricant proteins. (<span class="citeproc-not-found" data-reference-id="taguchi2011lung">**???**</span>)
+In today's society, cancer in general and lung cancer specifically is one of the most common causes of death. There have been numerous studies on the prevalance and risk factors of lung cancer, many of which agree that smoking presents a serious increase in risk for developing lung cancer. (Peto *et al.*, 2000) However, there have been conflicting results as to how biological sex affects risk of lung cancer. Some studies indicate that there there are no significant differences in the overall lung cancer rates between men and women, althought here might be differences in the rates of certain types of lung cancer. (Bain *et al.*, 2004) However, other studies indicate that women are at a higher risk of developing all types of lung cancer. (Zang and Wynder, 1996) However, both of the cited studies agree with each other and other studies that adenocarcinoma rates are higher in females. (Devesa *et al.*, 2005) This type of cancer is characterized by regulation of several distinct genes, including those known to be associated with lung sulfricant proteins. (Taguchi *et al.*, 2011)
 
 Methods
 =======
@@ -21,7 +21,7 @@ After this initial study, Li et al. re-analyzed the sequence data looking for di
 Computational
 -------------
 
-The data from the initial study was downloaded off of NCBI, then re-proscessed and re-mapped using several programs. First, trimmomatic was used to properly clean and proscess the sequences from the initial RNAseq dataset. (<span class="citeproc-not-found" data-reference-id="doi:10.1093/bioinformatics/btu170">**???**</span>) BioMart was used to download the annotated reference genomes that the RNA sequences would be mapped to. (Durinck *et al.*, 2005) This RNAseq information mapped to these reference genomes usingsailfish. (<span class="citeproc-not-found" data-reference-id="patro_mount_kingsford_2014">**???**</span>) Finally, the cleaned RNAseq data and its associated metadata was analyzed in R using extensions such as ggplott
+The data from the initial study was downloaded off of NCBI, then re-proscessed and re-mapped using several programs. First, trimmomatic was used to properly clean and proscess the sequences from the initial RNAseq dataset. (Bolger *et al.*, 2014) BioMart was used to download the annotated reference genomes that the RNA sequences would be mapped to. (Durinck *et al.*, 2005) This RNAseq information mapped to these reference genomes usingsailfish. (Patro *et al.*, 2014) Finally, the cleaned RNAseq data and its associated metadata was analyzed in R using extensions such as ggplott
 
 Results
 =======
@@ -198,13 +198,27 @@ Discussion
 
 Initially, I noticed that gene expression was relatively even in both genders for the most common genes, witht he exception of EEF1A1 and SFTB (Figure 1). After breaking further breaking down this data by smoking status, I found a similar correlation between gene expression between the genders, but I noticed that there seemed to be less data on female smokers (Figure 2). When I looked into this further, I found that most of the female patients had never smoked and were in early stages of cancer. (Figure 3) Given this information, I decided to investigate whether the most common genes in female patients might be different than the most common genes in all patients, and found that they were (Table 2). Most of the genes tht were most commom in female patients were the same as the most common in general patients, and they showed similar expression patterns as well (Figure 4) Lastly, I decided to examine the expression of these genes compared to smoking status and cancer stage, and found that the genes that were more common in females were also most common in nonsmokers with early cancer stages, which makes sense given the other analyses (Figure 5).
 
-Of the few genes that are consistently more common in female patients than males are genes like SFTBP, which seems to be especially common in cancer stage 1B (Figure 5B). Although it is quite common in both genders at this stage, SFTBP is the most common gene in females at this stage, but not in males. Although this could be due to the gene simply being expressed in early stages of cancer, the difference could potentially hint that a different type of cancer common to females at this stage. Studies have shown that the SFTBP gene is associated with adenocarcinoma, the type of lung cancer that is especially common in females. (<span class="citeproc-not-found" data-reference-id="taguchi2011lung">**???**</span>) Given that Li et al. showed that there are differences in gene expression among lung cancer patients who do and do not smoke, it is possible that adenocarcinomaadenocarcinoma might be more common in people who do not smoke, rather than females. (Li *et al.*, 2015) However, this gene is still more common in females who have never smoked than males who have never smoked, indicating that SFTBP's abundance in female patients is more likely due to gender than smoking status.
+Of the few genes that are consistently more common in female patients than males are genes like SFTBP, which seems to be especially common in cancer stage 1B (Figure 5B). Although it is quite common in both genders at this stage, SFTBP is the most common gene in females at this stage, but not in males. Although this could be due to the gene simply being expressed in early stages of cancer, the difference could potentially hint that a different type of cancer common to females at this stage. Studies have shown that the SFTBP gene is associated with adenocarcinoma, the type of lung cancer that is especially common in females. (Taguchi *et al.*, 2011) Given that Li et al. showed that there are differences in gene expression among lung cancer patients who do and do not smoke, it is possible that adenocarcinomaadenocarcinoma might be more common in people who do not smoke, rather than females. (Li *et al.*, 2015) However, this gene is still more common in females who have never smoked than males who have never smoked, indicating that SFTBP's abundance in female patients is more likely due to gender than smoking status.
 
 Sources Cited
 =============
+
+Bain,C. *et al.* (2004) Lung cancer rates in men and women with comparable histories of smoking. *Journal of the National Cancer Institute*, **96**, 826–834.
+
+Bolger,A.M. *et al.* (2014) Trimmomatic: A flexible trimmer for illumina sequence data. *Bioinformatics*, **30**, 2114–2120.
+
+Devesa,S.S. *et al.* (2005) International lung cancer trends by histologic type: Male: Female differences diminishing and adenocarcinoma rates rising. *International journal of cancer*, **117**, 294–299.
 
 Durinck,S. *et al.* (2005) BioMart and bioconductor: A powerful link between biological databases and microarray data analysis. *Bioinformatics*, **21**, 3439–3440.
 
 Li,Y. *et al.* (2015) RNA-seq analysis of lung adenocarcinomas reveals different gene expression profiles between smoking and nonsmoking patients. *Tumor Biology*, **36**, 8993–9003.
 
+Patro,R. *et al.* (2014) Sailfish enables alignment-free isoform quantification from rna-seq reads using lightweight algorithms.
+
+Peto,R. *et al.* (2000) Smoking, smoking cessation, and lung cancer in the uk since 1950: Combination of national statistics with two case-control studies. *Bmj*, **321**, 323–329.
+
 Seo,J.-S. *et al.* (2012) The transcriptional landscape and mutational profile of lung adenocarcinoma. *Genome research*, **22**, 2109–2119.
+
+Taguchi,A. *et al.* (2011) Lung cancer signatures in plasma based on proteome profiling of mouse tumor models. *Cancer cell*, **20**, 289–299.
+
+Zang,E.A. and Wynder,E.L. (1996) Differences in lung cancer risk between men and women: Examination of the evidence. *JNCI: Journal of the National Cancer Institute*, **88**, 183–192.

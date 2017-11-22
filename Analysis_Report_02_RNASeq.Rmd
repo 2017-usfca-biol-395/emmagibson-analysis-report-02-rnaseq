@@ -9,7 +9,7 @@ csl: bioinformatics.csl
 
 # Introduction
 
-In today's society, cancer in general and lung cancer specifically is one of the most common causes of death. There have been numerous studies on the prevalance and risk factors of lung cancer, many of which agree that smoking presents a serious increase in risk for developing lung cancer. [@peto2000smoking] However, there have been conflicting results as to how biological sex affects risk of lung cancer. Some studies indicate that there there are no significant differences in the overall lung cancer rates between men and women, althought here might be differences in the rates of certain types of lung cancer. [@bain2004lung] However, other studies indicate that women are at a higher risk of developing all types of lung cancer. [@doi:10.1093/jnci/88.3-4.183] However, both of the cited studies agree with each other and other studies that adenocarcinoma rates are higher in females. [@devesa2005international] This type of cancer is characterized by regulation of several distinct genes, including those known to be associated with lung sulfricant proteins. [@taguchi2011lung]
+In today's society, cancer in general and lung cancer specifically is one of the most common causes of death. There have been numerous studies on the prevalance and risk factors of lung cancer, many of which agree that smoking presents a serious increase in risk for developing lung cancer. [@peto2000smoking] However, there have been conflicting results as to how biological sex affects risk of lung cancer. Some studies indicate that there there are no significant differences in the overall lung cancer rates between men and women, althought here might be differences in the rates of certain types of lung cancer. [@bain2004lung] However, other studies indicate that women are at a higher risk of developing all types of lung cancer. [@zang1996] However, both of the cited studies agree with each other and other studies that adenocarcinoma rates are higher in females. [@devesa2005international] This type of cancer is characterized by regulation of several distinct genes, including those known to be associated with lung sulfricant proteins. [@taguchi2011lung]
 
 # Methods
 
@@ -21,7 +21,7 @@ After this initial study, Li et al. re-analyzed the sequence data looking for di
 
 ## Computational
 
-The data from the initial study was downloaded off of NCBI, then re-proscessed and re-mapped using several programs. First, trimmomatic was used to properly clean and proscess the sequences from the initial RNAseq dataset. [@doi:10.1093/bioinformatics/btu170] BioMart was used to download the annotated reference genomes that the RNA sequences would be mapped to. [@doi:10.1093/bioinformatics/bti525] This RNAseq information mapped to these reference genomes usingsailfish. [@patro_mount_kingsford_2014] Finally, the cleaned RNAseq data and its associated metadata was analyzed in R using extensions such as ggplott
+The data from the initial study was downloaded off of NCBI, then re-proscessed and re-mapped using several programs. First, trimmomatic was used to properly clean and proscess the sequences from the initial RNAseq dataset. [@bolger2014] BioMart was used to download the annotated reference genomes that the RNA sequences would be mapped to. [@durinck2005] This RNAseq information mapped to these reference genomes usingsailfish. [@patro_mount_kingsford_2014] Finally, the cleaned RNAseq data and its associated metadata was analyzed in R using extensions such as ggplott
 
 # Results
 
